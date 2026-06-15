@@ -19,12 +19,12 @@ The dataset holds records for 818,238 events, with 29 features. The target (Higg
 // 04_baseline_random_forest_model.ipynb -- Builds and evaluates a random forest classifier based on the features from notebook 02.
 // 05_baseline_validation.ipynb -- Runs a cross validation of both the logistical regression model and random forest classifier from notebooks 03 and 04.
 
-/src -- Organises functions to ensure the results are reproducible.
-//data_processing.py -- Has functions for pulling the dataset and preprossessing the data.
-//feature_investigation.py -- Functions for testing the features.
-//training_functions.py -- Functions for splitting and scaling the data.
-//evaluation_metrics.py -- For functions testing a single run of a model.
-//validation_metrics.py -- For cross validation functions and attaining performance scores.
+/src -- Organises functions to ensure the results are reproducible.  
+//data_processing.py -- Has functions for pulling the dataset and preprossessing the data.  
+//feature_investigation.py -- Functions for testing the features.  
+//training_functions.py -- Functions for splitting and scaling the data.  
+//evaluation_metrics.py -- For functions testing a single run of a model.  
+//validation_metrics.py -- For cross validation functions and attaining performance scores.  
 
 requirements.txt -- Lists python libraries used.
 
