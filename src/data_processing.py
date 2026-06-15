@@ -8,25 +8,34 @@ Assumptions:
 - Any different datasets follow the same format as the official 2014 dataset
         (i.e. signals will be under "Label", identified as "s", and all columns will have headings)
 - Following the exploratory data analysis, there are no null values.
-
 """
 
 import pandas as pd
 from pathlib import Path
 
-def pull_data(file):
+def pull_data():
     root = Path().resolve()
     while not (root/"src").exists():
         root = root.parent
-    df = pd.read_csv(root/file)
+    
+    try:
+        df = pd.read_csv("https://opendata.cern.ch/record/328/files/atlas-higgs-challenge-2014-v2.csv.gz")
+    except:
+        try:
+            df = pd.read_csv(root/"data"/"")
+        except:
+            print("No Dataset Found. Please ensure the link is correct, or ensure the file is downloaded in /data")
+
     return df
 
 def create_target(df):
     df["Target"] = (df["Label"] == "s").astype(int)
     return df
 
-
-
 def select_features(df, features, target):
     x_data, y_data = df[features], df[target]
     return x_data, y_data
+
+if __name__ == "__main__":
+    df = pd.read_csv("https://opendata.cern.ch/record/328/files/atlas-higgs-challenge-2014-v2.csv.gz")
+    print(df)
