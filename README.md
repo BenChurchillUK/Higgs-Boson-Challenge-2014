@@ -12,12 +12,12 @@ The dataset holds records for 818,238 events, with 29 features. The target (Higg
 
 ## Repository Structure
 
-/notebooks -- Runs the data investigations, machine learning models, evaluation and validation processes.
-// 01_dataset_overview.ipynb -- Explores the structure of the dataset.
-// 02_feature_investigation.ipynb -- Explores the statistical relevance of each feature in the dataset.
-// 03_baseline_logistical_regression_model.ipynb -- Builds and evaluates a logistical regression model based on the features from notebook 02.
-// 04_baseline_random_forest_model.ipynb -- Builds and evaluates a random forest classifier based on the features from notebook 02.
-// 05_baseline_validation.ipynb -- Runs a cross validation of both the logistical regression model and random forest classifier from notebooks 03 and 04.
+/notebooks -- Runs the data investigations, machine learning models, evaluation and validation processes.  
+// 01_dataset_overview.ipynb -- Explores the structure of the dataset.  
+// 02_feature_investigation.ipynb -- Explores the statistical relevance of each feature in the dataset.  
+// 03_baseline_logistical_regression_model.ipynb -- Builds and evaluates a logistical regression model based on the features from notebook 02.  
+// 04_baseline_random_forest_model.ipynb -- Builds and evaluates a random forest classifier based on the features from notebook 02.  
+// 05_baseline_validation.ipynb -- Runs a cross validation of both the logistical regression model and random forest classifier from notebooks 03 and 04.  
 
 /src -- Organises functions to ensure the results are reproducible.  
 //data_processing.py -- Has functions for pulling the dataset and preprossessing the data.  
@@ -34,7 +34,16 @@ Firstly, the data was explored in notebook 01. The structure was assessed throug
 
 Further looking into the features, notebook 02 compares the distribution of signal and background events for each distribution. The aim was to discover which features had a distinguishable difference between candidates and non-candidates. The four features selected, PRI_met, DER_pt_tot, DER_mass_jet_jet, and DER_pt_h, had little to no overlap between signals and noise, and were selected for this reason.
 
-The first two models were Logistic Regression and Random Forest Classifier. These models were defined as baseline, to test whether the features had an impact on separating Higgs Boson candidates
+The first two models were Logistic Regression and Random Forest Classifier. These models were defined as baseline, to test whether the features had an impact on separating Higgs Boson candidates. Logistic Regression was selected for testing whether there was a linear relation between the features and identifying candidates; and Random Forest Classifier was selected to test if there was a non-linear relation. Then, notebook_05 ran stratefied K-Folds to test the consistency of the model by breaking the dataset down, producing multiple training and test data.
+
+## Results
+
+The initial baseline models focused on statistically relevant features, through a Logistic Regression and Random Forest Classifier models. Upon validation, both models attained a mean accuracy of 68%, however the Random Forest scored marginally better when considering the Receiver-Operating Characteristic and Area Under Curve (ROC-AUC) and Logistic Regression performed considerably better when considering the logarithimic loss. This could suggest that the linear model produced less false positives, however further testing will be required.
+
+|   | Accuracy Score | ROC-AUC | Log Loss (Negative) |
+|---|---|---|---|
+|Logistic Regression|0.681078 ± 0.001023|0.678342 ± 0.002043|-0.603889 ± 0.000745|
+|Random Forest Classifier|0.680245 ± 0.000577|0.692452 ± 0.001662|-0.886763 ± 0.007772|
 
 ## The Models
 
