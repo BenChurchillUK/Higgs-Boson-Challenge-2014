@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-The challenge was to identify positive signals for the Higgs Boson from the provided ATLAS data. This repository serves to explore key techniques, such as Signal Processing and Machine Learning.
+The challenge was to identify positive signals for the Higgs Boson from the provided ATLAS data. This repository serves to explore key techniques, such as using Machine Learning for data analysis.
 
 ## Dataset
 
-The official data was used, as stored by CERN. The relevant csv file is called in src/data_processing.py or found at .
+The official data was used, as stored by CERN. The relevant csv file is called in src/data_processing.py or found at https://opendata.cern.ch/record/328.
 
 The dataset holds records for 818,238 events, with 29 features. The target (Higgs Boson candidates) are separated in "Label" by signals ("s") and background/noise ("b").
 
@@ -15,9 +15,9 @@ The dataset holds records for 818,238 events, with 29 features. The target (Higg
 /notebooks -- Runs the data investigations, machine learning models, evaluation and validation processes.  
 // 01_dataset_overview.ipynb -- Explores the structure of the dataset.  
 // 02_feature_investigation.ipynb -- Explores the statistical relevance of each feature in the dataset.  
-// 03_baseline_logistical_regression_model.ipynb -- Builds and evaluates a logistical regression model based on the features from notebook 02.  
+// 03_baseline_logistic_regression_model.ipynb -- Builds and evaluates a logistic regression model based on the features from notebook 02.  
 // 04_baseline_random_forest_model.ipynb -- Builds and evaluates a random forest classifier based on the features from notebook 02.  
-// 05_baseline_validation.ipynb -- Runs a cross validation of both the logistical regression model and random forest classifier from notebooks 03 and 04.  
+// 05_baseline_validation.ipynb -- Runs a cross validation of both the logistic regression model and random forest classifier from notebooks 03 and 04.  
 
 /src -- Organises functions to ensure the results are reproducible.  
 //data_processing.py -- Has functions for pulling the dataset and preprossessing the data.  
@@ -34,11 +34,11 @@ Firstly, the data was explored in notebook 01. The structure was assessed throug
 
 Further looking into the features, notebook 02 compares the distribution of signal and background events for each distribution. The aim was to discover which features had a distinguishable difference between candidates and non-candidates. The four features selected, PRI_met, DER_pt_tot, DER_mass_jet_jet, and DER_pt_h, had little to no overlap between signals and noise, and were selected for this reason.
 
-The first two models were Logistic Regression and Random Forest Classifier. These models were defined as baseline, to test whether the features had an impact on separating Higgs Boson candidates. Logistic Regression was selected for testing whether there was a linear relation between the features and identifying candidates; and Random Forest Classifier was selected to test if there was a non-linear relation. Then, notebook_05 ran stratefied K-Folds to test the consistency of the model by breaking the dataset down, producing multiple training and test data.
+The first two models were Logistic Regression and Random Forest Classifier. These models were defined as baseline, to test whether the features had an impact on separating Higgs Boson candidates. Logistic Regression was selected for testing whether there was a linear relation between the features and identifying candidates; and Random Forest Classifier was selected to test if there was a non-linear relation. Then, notebook_05 ran stratified K-Folds to test the consistency of the model by breaking the dataset down, producing multiple training and test data.
 
 ## Results
 
-The initial baseline models focused on statistically relevant features, through a Logistic Regression and Random Forest Classifier models. Upon validation, both models attained a mean accuracy of 68%, however the Random Forest scored marginally better when considering the Receiver-Operating Characteristic and Area Under Curve (ROC-AUC) and Logistic Regression performed considerably better when considering the logarithimic loss. This could suggest that the linear model produced less false positives, however further testing will be required.
+The initial baseline models focused on statistically relevant features, through a Logistic Regression and Random Forest Classifier models. Upon validation, both models attained a mean accuracy of 68%, however the Random Forest scored marginally better when considering the Receiver-Operating Characteristic and Area Under Curve (ROC-AUC) and Logistic Regression performed considerably better when considering the logarithmic loss. This could suggest that both models are making different probability estimates despite achieving similar accuracy scores.
 
 |   | Accuracy Score | ROC-AUC | Log Loss (Negative) |
 |---|---|---|---|
@@ -49,9 +49,9 @@ The initial baseline models focused on statistically relevant features, through 
 
 Due to the nature of the provided dataset; supervised, classification models were selected.
 
-Logistal Regression: A regression model that estimates the probability of an event based off of previous data.
+Logistic Regression: A regression model that estimates the probability of an event based off of previous data.
 
-Random Forest: A model that combines multiple algorithms to predict the probability of an event.
+Random Forest Classifier: A model that combines multiple decision trees to predict the probability of an event.
 
 ## Future Work
 
